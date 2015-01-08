@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Routing example</title>
+
+</head>
+<body ng-app="routingApp">
+    <br>
+    <h1>Hello Routing !</h1>
+
+    <ul>
+        <li><a href="#/">Default Route</a></li>
+        <li><a href="#/second">Second Route</a></li>
+        <li><a href="#/third">Nonexistent Route</a></li>
+    </ul>
+
+    <div ng-view></div>
+
+    <script src="../lib/angular.js"></script>
+    <script src="../lib/angular-route.js"></script>
+    <script>
+        angular.module('routingApp', ['ngRoute'])
+                .config(['$routeProvider', function($routeProvider){
+
+                    $routeProvider.when('/', {
+                        template: '<h5>This is default route</h5>'
+                    })
+                    .when('/second', {
+                        templateUrl: '../chapter8/filter-custom.html'
+                    })
+                    .otherwise({redirectTo: '/'});
+                }]);
+    </script>
+
+
+</body>
+</html>

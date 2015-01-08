@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="filterApp">
+<head lang="en">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>$http get example</title>
+    <style>
+        .item {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body ng-controller="FilterCtrl as ctrl">
+    <br>
+    <h1>Hello Filter !</h1>
+    <div>Amount of a number : {{ctrl.amount | number }}</div>
+    <div>Total Cost as a currency : {{ctrl.totalCost | currency}}</div>
+    <div>Total Cost in INR : {{ctrl.totalCost | currency: 'INR '}}</div>
+    <div>Shouting the name: {{ctrl.name | uppercase | limitTo: 6}}</div>
+    <div>Start Time: {{ctrl.startTime | date:'medium'}}</div>
+
+    <script src="../lib/angular.js"></script>
+    <script>
+        angular.module('filterApp',[])
+                .controller('FilterCtrl', [ function() {
+                   this.amount = 1024;
+                    this.totalCost = 4906;
+                    this.name = 'Shyam Seshadri';
+                    this.startTime = new Date().getTime();
+                }]);
+    </script>
+
+
+</body>
+</html>

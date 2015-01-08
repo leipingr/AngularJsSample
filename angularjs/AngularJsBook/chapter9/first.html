@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>myApp</title>
+</head>
+<body ng-controller="firstCtrl as ctrl" class="media-body">
+    <div>
+        <h2>list items:</h2>
+        <div ng-repeat="item in items">
+            <table class="table table-bordered">
+                <tr>
+                <td>
+                    <label ng-bind="item.name"></label>
+                </td>
+                <td>
+                    <input ng-model="item.quatity" />
+                </td>
+                <td>
+                    <label ng-bind="item.price |currency"></label>
+                </td>
+                <td>
+                    <label ng-bind="item.price * item.quatity | currency"></label>
+                </td>
+
+            </tr>
+            </table>
+
+        </div>
+
+
+        <div>
+            Total: {{count() | currency}}
+        </div>
+        <div>
+            Discount(10%) : {{discount() | currency}}
+        </div>
+    </div>
+
+    <script src="../lib/angular.js"></script>
+    <script src="first.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+.table tbody r tr:nth-child(n+1){
+    background-color: #ffff00;
+}
+.table tbody r tr:nth-child(n+2){
+    background-color: limegreen;
+}
+
+table {
+    border-bottom-color: #002a80;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: #808080;
+    border-bottom-color: #808080;
+}

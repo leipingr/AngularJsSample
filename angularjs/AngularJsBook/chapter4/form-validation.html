@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="noteApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>NoteApp</title>
+</head>
+<body ng-controller="MainCtrl as ctrl">
+    <br>
+    <form ng-submit="ctrl.submit()" name="myForm" novalidate class="css-form">
+        <table class="table">
+            <tr>
+                <td>
+                    <input type="text" name="uname" ng-model="ctrl.user.username" required ng-minlength="4" ng-maxlength="10">
+                        <span ng-show="myForm.uname.$error.required">必填项</span>
+                        <span ng-show="myForm.uname.$error.minlength">最小长度必须为：4</span>
+                        <span ng-show="myForm.uname.$error.maxlength">最大长度必须为：10</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                        <input type="password" name="passwd" ng-model="ctrl.user.password" required placeholder="password">
+                            <span ng-show="myForm.passwd.$error.required">必填项</span>
+                </td>
+
+
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="url" name="picUrl" ng-model="ctrl.user.url" required ng-minlength="10">
+
+                        <span ng-show="myForm.picUrl.$error.url">不符合URL格式 </span>
+                    <span ng-show="myForm.picUrl.$error.required">必填项</span>
+
+                </td>
+            </tr>
+            <td>
+                    <input class="btn" type="submit" value="Submit" ng-disabled="myForm.$invalid">
+            </td>
+    </form>
+    </table>
+
+    <script src="../lib/angular.js"></script>
+    <script>
+        angular.module('noteApp',[]).controller('MainCtrl',[
+                function() {
+                    var self = this;
+                    self.submit = function(){
+                        console.log("User clicked submit with ", self.user);
+                    };
+                }
+        ]);
+    </script>
+
+
+    <style type="text/css">
+        .css-form input.ng-invalid.ng-dirty {
+            border-color: #ff4040;
+            #background-color: #ff4040;
+        }
+    </style>
+</body>
+</html>

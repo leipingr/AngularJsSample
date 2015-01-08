@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="noteApp">
+<head lang="en">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>$http get example</title>
+    <style>
+        .item {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body ng-controller="MainCtrl as mainCtrl">
+    <br>
+    <h1>Hello Http-get !</h1>
+    <div ng-repeat="todo in mainCtrl.items" class="item">
+        <div>
+            <span class="lead" ng-bind="todo.id"></span>
+        </div>
+        <div>
+            <span class="text-muted" ng-bind="todo.label"></span>
+        </div>
+        <div>
+            by <span class="text-muted" ng-bind="todo.author"></span>
+        </div>
+    </div>
+
+
+    <script src="../lib/angular.js"></script>
+    <script>
+        angular.module('noteApp',[])
+                .controller('MainCtrl', ['$http', function($http) {
+                    var self = this;
+                    self.items = [];
+                    $http.get('http://172.17.234.75:8000/api/note').then(function(response) {
+                        self.items = response.data;
+
+                    }, function(errResponse){
+                        self.items.push({id : '', label:'Can not find data.',author:''});
+                        console.error("Error while fetching notes")
+                    });
+                }]);
+    </script>
+
+</body>
+</html>

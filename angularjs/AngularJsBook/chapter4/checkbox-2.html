@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="noteApp">
+<head lang="en">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>NoteApp</title>
+</head>
+<body ng-controller="MainCtrl as ctrl">
+    <br>
+
+    <div ng-init="user = {gender: 'female'}">
+        male:<input type="radio" name="gender" ng-model="user.gender" value="male">
+        female:<input type="radio" name="gender" ng-model="user.gender" value="female">
+    </div>
+
+    <div>
+        <h2> What are your favorite sports ? </h2>
+        <div ng-repeat="sport in ctrl.sports">
+            <label ng-bind="sport.label"></label>
+            <div>
+                With Binding:
+                <input type="checkbox" ng-model="sport.selected" ng-true-value="YES" ng-false-value="NO">
+            </div>
+            <div>
+                Using ng-checked:
+                <input type="checkbox" ng-checked="sport.selected ==='YES'">
+            </div>
+            <div>
+                Current state: {{sport.selected}}
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../lib/angular.js"></script>
+    <script>
+        angular.module('noteApp',[]).controller('MainCtrl',[
+                function() {
+                    var self = this;
+                    self.sports = [
+                        {label: "Basketball", selected: "YES"},
+                        {label: "Cricket", seleected: "NO"},
+                        {label: "Soccer", seleected: "NO"},
+                        {label: "Swimming", seleected: "YES"}
+                    ];
+                }
+        ]);
+    </script>
+
+</body>
+</html>
